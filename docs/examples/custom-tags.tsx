@@ -4,6 +4,12 @@ import Select, { Option } from 'rc-select';
 import '../../assets/index.less';
 import type { CustomTagProps } from '../src/interface/generator';
 
+interface IValProps {
+  label: string;
+  value: string;
+  type: 'tag' | 'text';
+};
+
 const children = [];
 for (let i = 10; i < 36; i += 1) {
   children.push(
@@ -12,15 +18,20 @@ for (let i = 10; i < 36; i += 1) {
     </Option>,
   );
 }
+// [
+//   {label: '111', value: '111', type: 'tag'},
+//   {label: '222', value: '222', type: 'text'},
+//   {label: '333', value: '333', type: 'tag'}
+// ]
 
 const Test: React.FC = () => {
-  const [disabled, setDisabled] = React.useState(false);
-  const [value, setValue] = React.useState<string[]>(['name2', '42', 'name3']);
-  const [maxTagCount, setMaxTagCount] = React.useState<number>(null);
-
-  const toggleMaxTagCount = (count: number) => {
-    setMaxTagCount(count);
-  };
+  const [value, setValue] = React.useState<IValProps[]>(
+    [
+  {label: '111', value: '111', type: 'tag'},
+  {label: '222', value: '222', type: 'text'},
+  {label: '333', value: '333', type: 'tag'}
+]
+  );
 
   const tagRender = (props: CustomTagProps) => {
     const { label, closable, onClose } = props;
@@ -46,54 +57,20 @@ const Test: React.FC = () => {
 
   return (
     <div>
-      <h2>tags select with custom renderer（scroll the menu）</h2>
-
       <div>
         <Select
           placeholder="placeholder"
           mode="tags"
           style={{ width: 500 }}
-          disabled={disabled}
-          maxTagCount={maxTagCount}
-          maxTagTextLength={10}
           value={value}
-          onChange={(val: string[], option) => {
-            console.log('change:', val, option);
+          onChange={(val: IValProps[]) => {
             setValue(val);
           }}
-          onSelect={(val, option) => {
-            console.log('selected', val, option);
-          }}
-          onDeselect={(val, option) => {
-            console.log('deselected', val, option);
-          }}
-          tokenSeparators={[',']}
           tagRender={tagRender}
-          onFocus={() => console.log('focus')}
-          onBlur={() => console.log('blur')}
         >
           {children}
         </Select>
       </div>
-      <p>
-        <button
-          type="button"
-          onClick={() => {
-            setDisabled(!disabled);
-          }}
-        >
-          toggle disabled
-        </button>
-        <button type="button" onClick={() => toggleMaxTagCount(0)}>
-          toggle maxTagCount (0)
-        </button>
-        <button type="button" onClick={() => toggleMaxTagCount(1)}>
-          toggle maxTagCount (1)
-        </button>
-        <button type="button" onClick={() => toggleMaxTagCount(null)}>
-          toggle maxTagCount (null)
-        </button>
-      </p>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import classNames from 'classnames';
 import pickAttrs from 'rc-util/lib/pickAttrs';
-import Overflow from 'rc-overflow';
+import Overflow from '../Overflow';
 import TransBtn from '../TransBtn';
 import type { InnerSelectorProps } from '.';
 import Input from './Input';
@@ -36,7 +36,6 @@ const SelectSelector: React.FC<SelectorProps> = (props) => {
   const {
     id,
     prefixCls,
-
     values,
     open,
     searchValue,
@@ -49,15 +48,12 @@ const SelectSelector: React.FC<SelectorProps> = (props) => {
     autoComplete,
     activeDescendantId,
     tabIndex,
-
     removeIcon,
-
     maxTagCount,
     maxTagTextLength,
     maxTagPlaceholder = (omittedValues: DisplayValueType[]) => `+ ${omittedValues.length} ...`,
     tagRender,
     onToggleOpen,
-
     onRemove,
     onInputChange,
     onInputPaste,

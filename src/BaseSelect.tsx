@@ -16,6 +16,7 @@ import useDelayReset from './hooks/useDelayReset';
 import TransBtn from './TransBtn';
 import useLock from './hooks/useLock';
 import { BaseSelectContext } from './hooks/useBaseProps';
+import { ValueItemProps } from './Select';
 
 const DEFAULT_OMIT_PROPS = [
   'value',
@@ -76,9 +77,9 @@ export interface BaseSelectPrivateProps {
   omitDomProps?: string[];
 
   // >>> Value
-  displayValues: DisplayValueType[];
-  onDisplayValuesChange: (
-    values: DisplayValueType[],
+  displayValues: ValueItemProps[];
+  onDisplayValuesChange?: (
+    values: ValueItemProps[],
     info: {
       type: 'add' | 'remove' | 'clear';
       values: DisplayValueType[];
@@ -363,7 +364,7 @@ const BaseSelect = React.forwardRef((props: BaseSelectProps, ref: React.Ref<Base
       const nextOpen = newOpen !== undefined ? newOpen : !mergedOpen;
 
       if (mergedOpen !== nextOpen && !disabled) {
-        setInnerOpen(nextOpen);
+        setInnerOpen(false);
         onDropdownVisibleChange?.(nextOpen);
       }
     },
@@ -512,7 +513,7 @@ const BaseSelect = React.forwardRef((props: BaseSelectProps, ref: React.Ref<Base
   };
 
   // ============================ Selector ============================
-  const onSelectorRemove = (val: DisplayValueType) => {
+  const onSelectorRemove = (val: ValueItemProps) => {
     const newValues = displayValues.filter((i) => i !== val);
 
     onDisplayValuesChange(newValues, {

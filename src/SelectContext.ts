@@ -9,7 +9,7 @@ export interface SelectContextProps {
   flattenOptions: FlattenOptionData<BaseOptionType>[];
   onActiveValue: OnActiveValue;
   defaultActiveFirstOption?: boolean;
-  onSelect: OnInternalSelect;
+  onSelect?: OnInternalSelect;
   menuItemSelectedIcon?: RenderNode;
   rawValues: Set<RawValueType>;
   fieldNames?: FieldNames;
