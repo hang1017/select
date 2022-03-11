@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.10.1",
+    "antd": "^4.19.1",
     "classnames": "2.x",
     "rc-motion": "^2.0.1",
     "rc-overflow": "^1.0.0",

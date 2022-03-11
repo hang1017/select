@@ -292,11 +292,11 @@ function Overflow<ItemType = any>(props: OverflowProps<ItemType>, ref: React.Ref
         );
       }
     : (item: any, index: number) => {
-        const { type = '', value = '' } = item;
+        const { type = '', label = '' } = item;
         const key = getKey(item, index);
 
         if (type === 'text') {
-          return <span key={key}>{value}</span>;
+          return <span key={key}>{label}</span>;
         }
 
         return (
@@ -350,7 +350,11 @@ function Overflow<ItemType = any>(props: OverflowProps<ItemType>, ref: React.Ref
   let overflowNode = (
     <Component
       className={classNames(!invalidate && prefixCls, className)}
-      style={style}
+      style={{
+        ...style,
+        display: 'flex',
+        alignItems: 'center',
+      }}
       ref={ref}
       {...restProps}
     >

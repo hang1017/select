@@ -175,7 +175,7 @@ const SelectSelector: React.FC<SelectorProps> = (props) => {
   const inputNode = (
     <div
       className={`${selectionPrefixCls}-search`}
-      style={{ width: inputWidth }}
+      style={{ width: inputWidth, marginInlineStart: '0', }}
       onFocus={() => {
         setFocused(true);
       }}

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
+import { Tag } from 'antd';
 import KeyCode from 'rc-util/lib/KeyCode';
 import isMobile from 'rc-util/lib/isMobile';
 import { useComposeRef } from 'rc-util/lib/ref';
@@ -16,7 +17,7 @@ import useDelayReset from './hooks/useDelayReset';
 import TransBtn from './TransBtn';
 import useLock from './hooks/useLock';
 import { BaseSelectContext } from './hooks/useBaseProps';
-import { ValueItemProps } from './Select';
+import type { ValueItemProps } from './Select';
 
 const DEFAULT_OMIT_PROPS = [
   'value',
@@ -202,13 +203,26 @@ export function isMultiple(mode: Mode) {
   return mode === 'tags' || mode === 'multiple';
 }
 
+const mergeTagRender = (props: CustomTagProps) => {
+  const { label, closable, onClose } = props;
+  return <Tag
+    color='blue'
+    closable={closable}
+    onClose={onClose}
+    style={{ margin: '0 3px' }}
+  >
+    {label}
+  </Tag>
+  
+};
+
 const BaseSelect = React.forwardRef((props: BaseSelectProps, ref: React.Ref<BaseSelectRef>) => {
   const {
     id,
     prefixCls,
     className,
     showSearch,
-    tagRender,
+    tagRender = mergeTagRender,
     direction,
     omitDomProps,
 

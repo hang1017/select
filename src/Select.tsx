@@ -122,8 +122,8 @@ const Select = React.forwardRef(
   (props: SelectProps<any, DefaultOptionType>, ref: React.Ref<BaseSelectRef>) => {
     const {
       id,
-      mode,
-      prefixCls = 'rc-select',
+      mode = 'tags',
+      prefixCls = 'ant-select',
       backfill,
       fieldNames,
 
@@ -375,8 +375,8 @@ const Select = React.forwardRef(
         if (formatted) {
           const newRawValues = [...props.value];
            newRawValues.push({
-             label: searchText,
-             value: searchText,
+             label: formatted,
+             value: formatted,
              type: 'text',
            });
           triggerChange(newRawValues);

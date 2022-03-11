@@ -79,7 +79,7 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
     type: 'search',
     autoFocus,
     className: classNames(`${prefixCls}-selection-search-input`, inputNode?.props?.className),
-    style: { ...style, opacity: editable ? null : 0 },
+    style: { fontSize: '14px', ...style, opacity: editable ? null : 0 },
     role: 'combobox',
     'aria-expanded': open,
     'aria-haspopup': 'listbox',
